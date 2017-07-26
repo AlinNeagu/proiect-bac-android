@@ -8,7 +8,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,67 @@ public class Date_Elev extends AppCompatActivity {
         id= intent.getIntExtra("id",0);
 
         getDateElev(id);
+
+        Button clickButton = (Button) findViewById(R.id.deleteElev);
+        clickButton.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.e("message","Ai apasat pe butonul de stergere");
+                deleteElev(id);
+
+            }
+
+
+        });
+        Button clickButton2 = (Button) findViewById(R.id.editElev);
+        clickButton2.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.e("message","Ai apasat pe butonul de editare");
+                goToEditElev(id);
+                Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context, "Aici poti edita elevul", Toast.LENGTH_LONG);
+                toast.show();
+
+            }
+
+
+        });
+    }
+
+    public void deleteElev(int id){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://10.0.2.2:8080/ProiectBAC/deleteElev";
+        url=url.concat("/?idElev="+Integer.toString(id));
+        Context ctx=getApplicationContext();
+        Toast toast=Toast.makeText(ctx,url,Toast.LENGTH_LONG);
+        toast.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("message","Am ajuns in response-ul de la stergere!");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context, error.toString(), Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        queue.add(stringRequest);
+        Context context = getApplicationContext();
+        Toast toast1 = Toast.makeText(context, "Elevul a fost sters", Toast.LENGTH_LONG);
+        toast1.show();
+    }
+
+    void goToEditElev(int id){
+        Intent intent = new Intent(this, EditElev.class);
+
+        startActivity(intent);
     }
 
     public void updateView(){

@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,12 +22,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.iuliapopa.bac_androidapp.R;
-import com.example.iuliapopa.bac_androidapp.com.example.pojo.AddElevDTO;
-import com.example.iuliapopa.bac_androidapp.com.example.pojo.LiceePOJO;
-import com.example.iuliapopa.bac_androidapp.com.example.pojo.LiceuPOJO;
+import com.example.iuliapopa.bac_androidapp.com.example.pojo.*;
 import com.example.iuliapopa.bac_androidapp.com.example.pojo.ProbaDTO;
-import com.example.iuliapopa.bac_androidapp.com.example.pojo.ProbePOJO;
-import com.example.iuliapopa.bac_androidapp.com.example.pojo.ProfilPOJO;
 import com.example.iuliapopa.bac_androidapp.com.example.pojo.SpecializarePOJO;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -57,7 +52,6 @@ import static com.example.iuliapopa.bac_androidapp.R.id.textSpecializare;
 
 public class AdaugareElev extends AppCompatActivity {
 
-    ImageButton addElev;
     LiceePOJO liceePojo= new LiceePOJO();
     ProfilPOJO[] profilPojo;
     SpecializarePOJO[] specializarePojo;
@@ -97,10 +91,12 @@ public class AdaugareElev extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+
         getNumeLicee();
 
         Button clickButton = (Button) findViewById(R.id.adaugareElev);
@@ -110,10 +106,15 @@ public class AdaugareElev extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("message","Ai apasat pe buton");
                 insertElev();
+
+
+
+
             }
 
 
         });
+
 
     }
 
@@ -852,5 +853,4 @@ public void getProfiluri(){
 }
 
 */
-
 }

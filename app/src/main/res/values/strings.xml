@@ -12,4 +12,5 @@
     <string name="title_activity_add_profil">AddProfil</string>
     <string name="title_activity_edit_profil">EditProfil</string>
     <string name="title_activity_adaugare_elev">AdaugareElev</string>
+    <string name="title_activity_edit_elev">EditElev</string>
 </resources>
