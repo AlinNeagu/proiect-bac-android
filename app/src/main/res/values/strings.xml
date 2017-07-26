@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BAC</string>
+    <string name="action_getElevi">Elevi</string>
+    <string name="action_getLicee">Licee</string>
+    <string name="action_getProfiluri">Profiluri</string>
+    <string name="action_getSpecializari">Specializari</string>
+    <string name="action_getDiscipline">Discipline</string>
+    <string name="action_adaugaLiceu">Adauga liceu</string>
+    <string name="title_activity_get_elevi">getEleviActivity</string>
+    <string name="title_activity_edit_liceu">EditLiceuActivity</string>
+    <string name="title_activity_date__elev">Date_Elev</string>
+    <string name="title_activity_add_profil">AddProfil</string>
+    <string name="title_activity_edit_profil">EditProfil</string>
+    <string name="title_activity_adaugare_elev">AdaugareElev</string>
+</resources>
