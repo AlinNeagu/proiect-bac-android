@@ -2,7 +2,6 @@ package com.example.iuliapopa.bac_androidapp.com.example.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -66,10 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 onClickSearch();
             }
         });
-//        Intent intent=new Intent(MainActivity.this,EditProfil.class);
-//        intent.putExtra("id",2);
-//        intent.putExtra("nume","Uman");
-//        startActivity(intent);
+
         getElevi();
     }
 

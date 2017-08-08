@@ -54,6 +54,14 @@
         <activity
             android:name=".com.example.activity.EditElev"
             android:label="@string/title_activity_edit_elev"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".com.example.activity.AddDisciplina"
+            android:label="@string/title_activity_add_disciplina"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".com.example.activity.EditDisciplina"
+            android:label="@string/title_activity_edit_disciplina"
             android:theme="@style/AppTheme"></activity>
     </application>
 
