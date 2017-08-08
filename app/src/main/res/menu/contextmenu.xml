@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <item
         android:id="@+id/edit"
-        android:title="Edit"/>
+        android:title="Editează"/>
     <item
         android:id="@+id/delete"
-        android:title="Delete"/>
+        android:title="Șterge"/>
 </menu>

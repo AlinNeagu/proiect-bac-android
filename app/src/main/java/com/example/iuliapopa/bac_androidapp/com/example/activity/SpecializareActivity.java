@@ -1,18 +1,25 @@
 package com.example.iuliapopa.bac_androidapp.com.example.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,11 +44,15 @@ import java.util.List;
 public class SpecializareActivity extends MainActivity{
 
     private ListView mainListView;
+    private ListView listView;
     private ArrayAdapter<String> listAdapter;
-
+    Button button;
     List<ProfilPOJO> profiluriPOJO = new ArrayList<>();
     List<SpecializarePOJO> specializariPOJO = new ArrayList<>();
     ObjectMapper objMapper = new ObjectMapper();
+    ArrayAdapter adapter;
+    Spinner spinner;
+    String profilSelectat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +62,60 @@ public class SpecializareActivity extends MainActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
+        button = (Button) findViewById(R.id.angry_btn);
+
+        // Capture button clicks
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent myIntent = new Intent(SpecializareActivity.this,
+                        AdaugaSpecializare.class);
+                startActivity(myIntent);
+            }
+        });
+
         getProfiluri();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater =getMenuInflater();
+        inflater.inflate(R.menu.contextmenu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        Intent myIntent = new Intent();
+        switch (item.getItemId()) {
+            case R.id.edit:
+                int position1 = info.position;
+                String nume1 = (String) listView.getItemAtPosition(position1);
+
+                myIntent = new Intent(this,EditSpecializare.class);
+                Bundle b = new Bundle();
+                b.putString("nume",nume1);
+
+                for (SpecializarePOJO spec: specializariPOJO){
+                    if (nume1.equals(spec.getNume())){
+                            b.putString("profil",profilSelectat);
+                            b.putString("id",spec.getId().toString());
+                        }
+                    }
+                myIntent.putExtra("date",b);
+                startActivity(myIntent);
+                finish();
+                return true;
+            case R.id.delete:
+                int position = info.position;
+                String nume = (String) listView.getItemAtPosition(position);
+                deleteSpecializare(position,nume);
+                adapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override
@@ -124,13 +188,13 @@ public class SpecializareActivity extends MainActivity{
                                     R.layout.simple_spinner_item, listaProfiluri);
 
 
-                            Spinner spinner = (Spinner) findViewById(R.id.spinner);
+                            spinner = (Spinner) findViewById(R.id.spinner);
                             spinner.setAdapter(adapter);
                             spinner.setOnItemSelectedListener(new OnItemSelectedListener()
                             {
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                                 {
-                                    String profilSelectat = parent.getItemAtPosition(position).toString();
+                                    profilSelectat = parent.getItemAtPosition(position).toString();
 
                                     Context context = getApplicationContext();
                                     Toast toast = Toast.makeText(context, profilSelectat, Toast.LENGTH_LONG);
@@ -198,8 +262,9 @@ public class SpecializareActivity extends MainActivity{
                             ArrayAdapter adapter = new ArrayAdapter<String>(SpecializareActivity.this,
                                     R.layout.simplerow, listaSpecializari);
 
-                            ListView listView = (ListView) findViewById(R.id.mainListView);
+                            listView = (ListView) findViewById(R.id.mainListView);
                             listView.setAdapter(adapter);
+                            registerForContextMenu(listView);
 
                         } catch (IOException e) {
                             Context context = getApplicationContext();
@@ -222,5 +287,74 @@ public class SpecializareActivity extends MainActivity{
         queue.add(stringRequest);
     }
 
+    public void deleteSpecializare(int position, String nume) {
+
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Context context = getApplicationContext();
+        Toast toast = Toast.makeText(context, "Ai selectat specializarea cu id = " + position, Toast.LENGTH_LONG);
+        toast.show();
+
+        int idSpecializare = 0;
+        for (SpecializarePOJO spec : specializariPOJO) {
+            if (nume.equals(spec.getNume()))
+                idSpecializare = spec.getId();
+        }
+
+        Context context1 = getApplicationContext();
+        Toast toast1 = Toast.makeText(context1, "Se sterge specializarea cu id = " + idSpecializare, Toast.LENGTH_LONG);
+        toast1.show();
+
+        String url = "http://10.0.2.2:8080/ProiectBAC/deleteSpecializare?id=" + idSpecializare;
+
+        // Request a string response from the provided URL.
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+        if (idSpecializare != 0) {
+
+            Request stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                            try {
+
+                                Context context = getApplicationContext();
+                                Toast toast = Toast.makeText(context, "stergere", Toast.LENGTH_LONG);
+                                toast.show();
+
+                                pDialog.hide();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Context context = getApplicationContext();
+                    Toast toast = Toast.makeText(context, "error", Toast.LENGTH_LONG);
+                    toast.show();
+                    pDialog.hide();
+                }
+            });
+
+
+// Add the request to the RequestQueue.
+            queue.add(stringRequest);
+        }
+        else
+        {
+            Context context2 = getApplicationContext();
+            Toast toast2 = Toast.makeText(context2, "id = 0", Toast.LENGTH_LONG);
+            toast2.show();
+            pDialog.hide();
+        }
+    }
+
+    /*http://localhost:8080/ProiectBAC/editSpecializare?specializare={"id":34,"nume":"aaaaaaaaa",
+    "profil":{"denumireProfil":"Tehnologic","idProfil":3,"currentId":null,"specializari":null}}*/
 
 }

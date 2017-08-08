@@ -30,13 +30,6 @@
         android:orderInCategory="100"
         android:title="@string/action_getDiscipline"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_adaugaLiceu"
-        android:orderInCategory="100"
-        android:title="@string/action_adaugaLiceu"
-        app:showAsAction="never" />
-
-
 
     <item
         android:id="@+id/action_search"
