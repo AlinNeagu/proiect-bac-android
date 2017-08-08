@@ -54,6 +54,14 @@
         <activity
             android:name=".com.example.activity.EditElev"
             android:label="@string/title_activity_edit_elev"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".com.example.activity.AdaugaSpecializare"
+            android:label="@string/title_activity_adauga_specializare"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".com.example.activity.EditSpecializare"
+            android:label="@string/title_activity_edit_specializare"
             android:theme="@style/AppTheme"></activity>
     </application>
 

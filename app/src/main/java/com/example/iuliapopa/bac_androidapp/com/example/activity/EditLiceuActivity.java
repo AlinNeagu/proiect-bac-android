@@ -3,6 +3,7 @@ package com.example.iuliapopa.bac_androidapp.com.example.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +38,7 @@ import java.util.List;
 
 import static com.android.volley.Request.Method.GET;
 
-public class EditLiceuActivity extends MainActivity {
+public class EditLiceuActivity extends AppCompatActivity {
 
 
     private ListView mainListView;
@@ -73,9 +74,6 @@ public class EditLiceuActivity extends MainActivity {
         numeJudet.setText(judet);
         id = b.getString("id");
         getProfiluri();
-
-
-
     }
 
 
@@ -340,11 +338,11 @@ public class EditLiceuActivity extends MainActivity {
         for (int i = 0; i<idProfil.size();i++){
             JSONObject data2 = new JSONObject();
             data2.put("denumireProfil", idProfil.get(i).getDenumireProfil());
-            getSpecializari(idProfil.get(i).getDenumireProfil());
+            //getSpecializari(idProfil.get(i).getDenumireProfil());
             data2.put("idProfil",idProfil.get(i).getIdProfil());
             data2.put("currentId", idProfil.get(i).getIdProfil());
-            idProfil.get(i).setSpecializari(listaSpecializari);
-            data2.put("specializari", idProfil.get(i).getSpecializari());
+            //idProfil.get(i).setSpecializari(null);
+            data2.put("specializari", data2.NULL);
             data3.put(i,data2);
         }
 
@@ -353,7 +351,8 @@ public class EditLiceuActivity extends MainActivity {
             data.put("nume", liceu.getNume());
             data.put("judet", liceu.getJudet());
             data.put("idProfil",data3);
-            data.put("idProfilInt",liceu.getIdProfilInt());
+            data.put("idProfilInt",data.NULL);
+
 
         } catch (JSONException e) {
             e.printStackTrace();
