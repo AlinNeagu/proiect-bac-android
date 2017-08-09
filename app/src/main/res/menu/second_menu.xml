@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.iuliapopa.bac_androidapp.com.example.activity.AdaugaLiceuActivity">
+
+
+    <item
+        android:id="@+id/action_back"
+        android:layout_alignParentRight="true"
+        android:icon="@drawable/ic_action_arrow_left"
+        android:orderInCategory="100"
+        android:title="Back"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_tick"
+        android:layout_alignParentLeft="true"
+        android:orderInCategory="300"
+        android:title="Done"
+        android:icon="@drawable/ic_action_tick"
+        app:showAsAction="ifRoom"/>
+</menu>
