@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
+    android:weightSum="1"
     tools:context="com.example.iuliapopa.bac_androidapp.com.example.activity.EditLiceuActivity">
+
+    <include
+        android:id="@+id/second_toolbar"
+        layout="@layout/second_toolbar" />
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.05"
-        android:text="Editeaza liceu" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05"
-        android:text="Nume" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif"
+        android:textIsSelectable="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:text="Editare liceu" />
 
     <EditText
         android:id="@+id/numeLiceu"
@@ -26,15 +31,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.05"
         android:ems="10"
+        android:cursorVisible="true"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorPrimary"
         android:inputType="textPersonName"
-         />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05"
-        android:text="Judet" />
+        android:text="Nume"
+        />
 
     <EditText
         android:id="@+id/numeJudet"
@@ -42,34 +46,60 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.05"
         android:ems="10"
+        android:cursorVisible="true"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorPrimary"
         android:inputType="textPersonName"
         android:text="Judet" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="153dp"
-        android:id="@+id/listaProfiluri"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:choiceMode="multipleChoice" />
-
-    <Spinner
-        android:id="@+id/spinner4"
-        android:layout_width="match_parent"
-        android:layout_height="45dp" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.05"
-        android:text="Profil" />
+        android:layout_weight="0.14"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:text="Profiluri"
+        android:textStyle="bold"
+        android:textSize="16dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:id="@+id/listaProfiluri"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:choiceMode="multipleChoice"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="91dp"
+        android:layout_weight="0.13"/>
+
+    <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="match_parent"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:dropDownSelector="@color/colorPrimary"
+        android:layout_height="45dp" />
 
     <Button
         android:id="@+id/editLiceu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.07"
-        android:text="Button" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="70dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Editează"
+        android:textSize="16dp"
+        android:textColor="#1b1b1b"/>
 
 </LinearLayout>

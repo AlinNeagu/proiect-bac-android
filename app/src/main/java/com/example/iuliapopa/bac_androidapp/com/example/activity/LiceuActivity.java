@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,13 +26,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.iuliapopa.bac_androidapp.R;
 import com.example.iuliapopa.bac_androidapp.com.example.pojo.LiceePOJO;
 import com.example.iuliapopa.bac_androidapp.com.example.pojo.LiceuPOJO;
-import com.example.iuliapopa.bac_androidapp.com.example.pojo.ProfilPOJO;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by iulia.popa on 5/30/2017.
@@ -40,17 +37,14 @@ import java.util.List;
 
 public class LiceuActivity extends MainActivity{
 
-    private ListView mainListView;
-    private ArrayAdapter<String> listAdapter;
 
     public static LiceePOJO liceePojo = new LiceePOJO();
-    List<ProfilPOJO> profiluriPOJO = new ArrayList<>();
     ObjectMapper objMapper = new ObjectMapper();
-    Button button;
+    ImageButton button;
     ListView listView;
     ArrayAdapter adapter;
-    List<ProfilPOJO> list;
     String judet = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +53,9 @@ public class LiceuActivity extends MainActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        button = (Button) findViewById(R.id.angry_btn);
+        getLicee();
+
+        button = (ImageButton) findViewById(R.id.angry_btn);
 
         // Capture button clicks
         button.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +66,7 @@ public class LiceuActivity extends MainActivity{
             }
         });
 
-        getLicee();
+
     }
 
     @Override
@@ -139,7 +135,6 @@ public class LiceuActivity extends MainActivity{
             case R.id.action_getLicee:
                 myIntent = new Intent(this,LiceuActivity.class);
                 startActivity(myIntent);
-
                 return true;
             case R.id.action_getDiscipline:
                 myIntent = new Intent(this,DisciplinaActivity.class);

@@ -17,4 +17,6 @@
     <string name="title_activity_edit_disciplina">EditDisciplina</string>
     <string name="title_activity_adauga_specializare">AdaugaSpecializare</string>
     <string name="title_activity_edit_specializare">EditSpecializare</string>
+    <string name="title_activity_liceu_activityy">LiceuActivityy</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

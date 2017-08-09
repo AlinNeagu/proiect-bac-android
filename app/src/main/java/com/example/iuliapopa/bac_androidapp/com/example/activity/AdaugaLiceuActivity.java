@@ -63,7 +63,7 @@ public class AdaugaLiceuActivity extends MainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adaugaliceu);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.second_toolbar);
         setSupportActionBar(toolbar);
 
         getProfiluri();
@@ -71,7 +71,7 @@ public class AdaugaLiceuActivity extends MainActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.second_menu, menu);
         return true;
     }
 
@@ -82,24 +82,12 @@ public class AdaugaLiceuActivity extends MainActivity{
         // as you specify a parent activity in AndroidManifest.xml.
         Intent myIntent;
         switch (item.getItemId()) {
-            case R.id.action_getElevi:
-                myIntent = new Intent(this,MainActivity.class);
-                startActivity(myIntent);
-                return true;
-            case R.id.action_getLicee:
+            case R.id.action_back:
                 myIntent = new Intent(this,LiceuActivity.class);
                 startActivity(myIntent);
                 return true;
-            case R.id.action_getDiscipline:
-                myIntent = new Intent(this,DisciplinaActivity.class);
-                startActivity(myIntent);
-                return true;
-            case R.id.action_getProfiluri:
-                myIntent = new Intent(this,ProfilActivity.class);
-                startActivity(myIntent);
-                return true;
-            case R.id.action_getSpecializari:
-                myIntent = new Intent(this,SpecializareActivity.class);
+            case R.id.action_tick:
+                myIntent = new Intent(this,LiceuActivity.class);
                 startActivity(myIntent);
                 return true;
             default:
@@ -144,6 +132,8 @@ public class AdaugaLiceuActivity extends MainActivity{
                             spinner.setAdapter(adapter);
 
 
+                            final List<String> listaProfiluriAlese = new ArrayList<>();
+
                             spinner.setOnItemSelectedListener(new OnItemSelectedListener()
                             {
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -153,6 +143,14 @@ public class AdaugaLiceuActivity extends MainActivity{
                                         if (profilPOJO.getDenumireProfil()==profilSelectat) {
                                             listaIdProfiluri.add(profilPOJO.getIdProfil());
                                             profiluri.add(profilPOJO);
+
+                                            listaProfiluriAlese.add(profilSelectat);
+                                            // do your stuff
+                                            ArrayAdapter adapter = new ArrayAdapter<String>(AdaugaLiceuActivity.this,
+                                                    R.layout.simplerow, listaProfiluriAlese);
+
+                                            ListView listView = (ListView) findViewById(R.id.profiluriAlese);
+                                            listView.setAdapter(adapter);
                                         }
                                     }
                                     Context context = getApplicationContext();

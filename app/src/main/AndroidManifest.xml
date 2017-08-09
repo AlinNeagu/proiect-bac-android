@@ -21,10 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".com.example.activity.LiceuActivity" />
-        <activity android:name=".com.example.activity.DisciplinaActivity" />
-        <activity android:name=".com.example.activity.ProfilActivity" />
-        <activity android:name=".com.example.activity.SpecializareActivity" />
+        <activity
+            android:name=".com.example.activity.LiceuActivity"
+            android:label="Licee" />
+        <activity android:name=".com.example.activity.DisciplinaActivity"
+            android:label="Discipline"/>
+        <activity android:name=".com.example.activity.ProfilActivity"
+            android:label="Profiluri"/>
+        <activity android:name=".com.example.activity.SpecializareActivity"
+            android:label="Specializări"/>
         <activity android:name=".com.example.activity.ChooseProfilActivity" />
         <activity android:name=".com.example.activity.AdaugaLiceuActivity" />
         <activity android:name=".com.example.activity.EditLiceuActivity" />
@@ -62,7 +67,7 @@
         <activity
             android:name=".com.example.activity.EditDisciplina"
             android:label="@string/title_activity_edit_disciplina"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

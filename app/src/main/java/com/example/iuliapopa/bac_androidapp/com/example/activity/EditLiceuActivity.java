@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -59,7 +60,7 @@ public class EditLiceuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_liceu);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.second_toolbar);
         setSupportActionBar(toolbar);
 
         Intent i = new Intent();
@@ -76,7 +77,11 @@ public class EditLiceuActivity extends AppCompatActivity {
         getProfiluri();
     }
 
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.second_menu, menu);
+        return true;
+    }
     public void getProfilForLiceu(String nume) {
 
         // Instantiate the RequestQueue.
