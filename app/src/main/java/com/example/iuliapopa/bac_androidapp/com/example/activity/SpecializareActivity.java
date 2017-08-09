@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -46,7 +46,7 @@ public class SpecializareActivity extends MainActivity{
     private ListView mainListView;
     private ListView listView;
     private ArrayAdapter<String> listAdapter;
-    Button button;
+    ImageButton button;
     List<ProfilPOJO> profiluriPOJO = new ArrayList<>();
     List<SpecializarePOJO> specializariPOJO = new ArrayList<>();
     ObjectMapper objMapper = new ObjectMapper();
@@ -62,7 +62,7 @@ public class SpecializareActivity extends MainActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        button = (Button) findViewById(R.id.angry_btn);
+        button = (ImageButton) findViewById(R.id.angry_btn);
 
         // Capture button clicks
         button.setOnClickListener(new View.OnClickListener() {
