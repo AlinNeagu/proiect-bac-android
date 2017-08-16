@@ -1,17 +1,29 @@
 package com.example.iuliapopa.bac_androidapp.com.example.pojo;
 
-public class ElevDTO {
-    private Integer id;
-    private String nume;
-    private String prenume;
-    private String initialaTatalui;
+import org.codehaus.jackson.annotate.JsonProperty;
 
+public class ElevDTO {
+    @JsonProperty("id")
+    private Integer id;
+    @JsonProperty("nume")
+    private String nume;
+    @JsonProperty("prenume")
+    private String prenume;
+    @JsonProperty("initialaTatalui")
+    private String initialaTatalui;
+    @JsonProperty("liceu")
     private LiceuPOJO liceu;
+    @JsonProperty("profil")
     private ProfilPOJO profil;
+    @JsonProperty("spec")
     private SpecializarePOJO spec;
+    @JsonProperty("limbaMaterna")
     private ProbaDTO limbaMaterna;
+    @JsonProperty("limbaModerna")
     private ProbaDTO limbaModerna;
+    @JsonProperty("probaAlegere")
     private ProbaDTO probaAlegere;
+    @JsonProperty("probaObligatorie")
     private ProbaDTO probaObligatorie;
     public Integer getId() {
         return id;
@@ -80,4 +92,20 @@ public class ElevDTO {
         this.probaObligatorie = probaObligatorie;
     }
 
+    @Override
+    public String toString() {
+        return "ElevDTO{" +
+                "id=" + id +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", initialaTatalui='" + initialaTatalui + '\'' +
+                ", liceu=" + liceu +
+                ", profil=" + profil +
+                ", spec=" + spec +
+                ", limbaMaterna=" + limbaMaterna +
+                ", limbaModerna=" + limbaModerna +
+                ", probaAlegere=" + probaAlegere +
+                ", probaObligatorie=" + probaObligatorie +
+                '}';
+    }
 }

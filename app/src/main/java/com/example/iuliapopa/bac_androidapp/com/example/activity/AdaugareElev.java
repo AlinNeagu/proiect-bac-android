@@ -1,6 +1,7 @@
 package com.example.iuliapopa.bac_androidapp.com.example.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -107,17 +108,23 @@ public class AdaugareElev extends AppCompatActivity {
                 Log.e("message","Ai apasat pe buton");
                 insertElev();
 
+                Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context, "Elevul a fost adaugat!", Toast.LENGTH_LONG);
+                toast.show();
 
-
+                goToMain();
 
             }
 
 
         });
-
-
     }
 
+    void goToMain() {
+        Intent intent = new Intent(this, MainActivity.class);
+
+        startActivity(intent);
+    }
     public void insertElev(){
 
 // Instantiate the RequestQueue.
@@ -214,9 +221,7 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "sunt in adauga elev" , Toast.LENGTH_LONG);
-                            toast.show();
+                            Log.e("message", "sunt in adaugare Elev");
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -236,9 +241,7 @@ public class AdaugareElev extends AppCompatActivity {
         new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for ADDElev", Toast.LENGTH_LONG);
-                toast.show();
+                Log.e("message", "nu merge ot add elev");
             }
         };
 
@@ -262,15 +265,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "licee", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message", "raspunsul de la licee: " +response);
                             liceePojo = objMapper.readValue(response, LiceePOJO.class);
 
 
                             List<String> listaLicee = new ArrayList<String>();
-
+                            listaLicee.add("");
 
                             for (LiceuPOJO liceuPojo : liceePojo.getLicee()) {
                                 // UnitateDeInvatamant unitate = new UnitateDeInvatamant();
@@ -317,9 +318,7 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for licee", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
@@ -342,15 +341,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String responseTrial) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "prooofiluri", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message","profil trial: " +responseTrial);
                             profilPojo = objMapper.readValue(responseTrial, ProfilPOJO[].class);
                             Log.e("message", "dupa mapper: ");
 
                             List<String> listaProfiluri = new ArrayList<String>();
-
+                            listaProfiluri.add("");
                             for (ProfilPOJO profilLiceu : profilPojo) {
                                 listaProfiluri.add(profilLiceu.getDenumireProfil());
 
@@ -395,9 +392,7 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for profiluri TRIAL", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
@@ -420,15 +415,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String responseTrial) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "specializari", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message","Specializare: " +responseTrial);
                             specializarePojo = objMapper.readValue(responseTrial, SpecializarePOJO[].class);
 
 
                             List<String> listaSpecializari = new ArrayList<String>();
-
+                            listaSpecializari.add("");
                             for (SpecializarePOJO specializareProfil : specializarePojo) {
                                 listaSpecializari.add(specializareProfil.getNume());
 
@@ -476,9 +469,7 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for profiluri TRIAL", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
@@ -499,15 +490,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "probee", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message", "raspunsul de la proba materna: " +response);
                             probe = objMapper.readValue(response, ProbePOJO.class);
                             Log.e("message","Dupa mapper la materna" +probe);
 
                             List<String> listaMaterna = new ArrayList<String>();
-
+                            listaMaterna.add("");
                             for (ProbaDTO probaDTO :probe.getLimbaMaterna()  ) {
                                 listaMaterna.add(probaDTO.getNume());
 
@@ -550,9 +539,7 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for licee", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
@@ -573,15 +560,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "probee", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message", "raspunsul de la proba obligatorie: " +response);
                             probe = objMapper.readValue(response, ProbePOJO.class);
                             Log.e("message","Dupa mapper la obligatoriu" +probe);
 
                             List<String> listaObligatoriu = new ArrayList<String>();
-
+                            listaObligatoriu.add("");
                             for (ProbaDTO probaDTO :probe.getProbaObligatorie()  ) {
                                 listaObligatoriu.add(probaDTO.getNume());
 
@@ -622,9 +607,7 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for licee", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
@@ -645,15 +628,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "probee", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message", "raspunsul de la proba obligatorie: " +response);
                             probe = objMapper.readValue(response, ProbePOJO.class);
                             Log.e("message","Dupa mapper la obligatoriu" +probe);
 
                             List<String> listaAlegere = new ArrayList<String>();
-
+                            listaAlegere.add("");
                             for (ProbaDTO probaDTO :probe.getProbaAlegere()  ) {
                                 listaAlegere.add(probaDTO.getNume());
 
@@ -694,9 +675,7 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for licee", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
@@ -716,15 +695,13 @@ public class AdaugareElev extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the response string.
                         try {
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "probee", Toast.LENGTH_LONG);
-                            toast.show();
+
                             Log.e("message", "raspunsul de la moderna: " +response);
                             probe = objMapper.readValue(response, ProbePOJO.class);
                             Log.e("message","Dupa mapper la moderna" +probe);
 
                             List<String> listaModerna = new ArrayList<String>();
-
+                            listaModerna.add("");
                             for (ProbaDTO probaDTO :probe.getLimbaModerna()  ) {
                                 listaModerna.add(probaDTO.getNume());
 
@@ -765,92 +742,12 @@ public class AdaugareElev extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "doesn`tttt work for licee", Toast.LENGTH_LONG);
-                toast.show();
+
             }
         });
 
         queue.add(stringRequest);
     }
 
-    /*
 
-public void getProfiluri(){
-
-
-    // Instantiate the RequestQueue.
-    RequestQueue queue = Volley.newRequestQueue(this);
-    String url = "http://10.0.2.2:8080/ProiectBAC/profiluri";
-
-    // Request a string response from the provided URL.
-    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String responseTrial) {
-                    // Display the response string.
-                    try {
-                        Context context = getApplicationContext();
-                        Toast toast = Toast.makeText(context, "prooofiluri", Toast.LENGTH_LONG);
-                        toast.show();
-                        Log.e("message","profil trial: " +responseTrial);
-                        profiluriPojo = objMapper.readValue(responseTrial, ProfiluriPOJO.class);
-
-
-                        List<String> listaProfiluri = new ArrayList<String>();
-
-                        for (ProfilPOJO profilPojo : profiluriPojo.getProfiluri()) {
-                            listaProfiluri.add(profilPojo.getDenumireProfil());
-
-                        }
-
-                        Context context1 = getApplicationContext();
-                        Toast toast1 = Toast.makeText(context1, "profiluri2", Toast.LENGTH_LONG);
-                        toast1.show();
-                        final Spinner spinnerProfiluri = (Spinner)findViewById(textProfil);
-
-                        ArrayAdapter adapter = new ArrayAdapter<String>(AdaugareElev.this,
-                                android.R.layout.simple_list_item_1, listaProfiluri);
-
-                        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                        spinnerProfiluri.setAdapter(adapter);
-
-                        Log.e("mesage", "inainte de set!!!!!" );
-
-                        spinnerProfiluri.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                String url = "http://10.0.2.2:8080/ProiectBAC/profiluri";
-                                textProfilAles = spinnerProfiluri.getSelectedItem().toString();
-                                Log.e("mesage", "profilul va fi!!!!!" +textProfilAles);
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                // your code here
-                            }
-
-
-                        });
-                        Log.e("mesage", "dupa set!!!!!" );
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            Context context = getApplicationContext();
-            Toast toast = Toast.makeText(context, "doesn`tttt work for profiluri TRIAL", Toast.LENGTH_LONG);
-            toast.show();
-        }
-    });
-
-    queue.add(stringRequest);
-}
-
-*/
 }

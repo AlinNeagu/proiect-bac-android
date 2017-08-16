@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent intent = new Intent(MainActivity.this,Date_Elev.class);
                                     intent.putExtra("id",eleviPojo.getElevi().get(position).getId());
+
+
                                     //based on item add info to intent
                                     startActivity(intent);
                                 }

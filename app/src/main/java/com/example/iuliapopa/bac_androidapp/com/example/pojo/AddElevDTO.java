@@ -5,6 +5,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.List;
 
 public class AddElevDTO {
+	@JsonProperty("id")
+	int id;
 	@JsonProperty("denumireUnitate")
 	String denumireUnitate;
 	@JsonProperty("denumireSpecializare")
@@ -54,10 +56,20 @@ public class AddElevDTO {
 		this.probe = probe;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	@Override
 	public String toString() {
 		return "AddElevDTO{" +
-				"denumireUnitate='" + denumireUnitate + '\'' +
+				"id=" + id +
+				", denumireUnitate='" + denumireUnitate + '\'' +
 				", denumireSpecializare='" + denumireSpecializare + '\'' +
 				", numeElev='" + numeElev + '\'' +
 				", prenumeElev='" + prenumeElev + '\'' +
